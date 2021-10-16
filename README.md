@@ -1,2 +1,2 @@
-# PythonWorkshop
+# PytorchWorkshop
 Code Workshop On Python
