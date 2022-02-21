@@ -6,7 +6,7 @@ import os
 
 def IOU(rec1, rec2):
     """
-    计算两个矩形框的交并比。
+    计算两个矩形框的交并比
     :param rec1: (x0,y0,x1,y1)      (x0,y0)代表矩形左上的顶点，（x1,y1）代表矩形右下的顶点。下同。
     :param rec2: (x0,y0,x1,y1)
     :return: 交并比IOU.
