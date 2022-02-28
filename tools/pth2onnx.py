@@ -1,6 +1,6 @@
 import torch
 import torch.onnx
-import torchvision
+import torchvision.models as models
 # from tinynet import tinynet
 import os
 
@@ -27,12 +27,12 @@ if __name__ == '__main__':
 
     # alexnet input(1,3,224,224)
     input = torch.randn(1, 3, 224, 224)
-    # model = torchvision.models.alexnet()
-    # model = torchvision.models.vgg16()
-    # model = torchvision.models.GoogLeNet()
-    # model = torchvision.models.Inception3()
-    # model = torchvision.models.densenet121(pretrained=True)
-    model = torchvision.models.densenet121()
+    # model = models.alexnet()
+    # model = models.vgg16()
+    # model = models.GoogLeNet()
+    # model = models.Inception3()
+    # model = models.densenet121()
+    model = models.resnet18()
     # model = torch.hub.load('pytorch/vision:v0.10.0', 'densenet121', pretrained=True)
 
 
