@@ -10,8 +10,8 @@ def pth_to_onnx(model, input, checkpoint, onnx_path, input_names=['input'], outp
         print('Warning! The onnx model name is not correct,\
               please give a name that ends with \'.onnx\'!')
         return 0
-
-    model.load_state_dict(torch.load(checkpoint))  # 初始化权重
+    # 初始化权重
+    model.load_state_dict(torch.load(checkpoint),strict=False)
     model.eval()
     # model.to(device)
 
@@ -22,12 +22,19 @@ def pth_to_onnx(model, input, checkpoint, onnx_path, input_names=['input'], outp
 
 if __name__ == '__main__':
     os.environ['CUDA_VISIBLE_DEVICES'] = '0'
-    checkpoint = '/home/hxzh02/文档/ModelsLIst/alexnet-owt-4df8aa71.pth'
-    onnx_path = '/home/hxzh02/文档/ModelsLIst/alexnet-owt-4df8aa71.onnx'
+    checkpoint = '/home/hxzh02/文档/ModelsLIst/DenseNet/densenet121-a639ec97.pth'
+    onnx_path = '/home/hxzh02/文档/ModelsLIst/DenseNet/densenet121-a639ec97.onnx'
 
     # alexnet input(1,3,224,224)
     input = torch.randn(1, 3, 224, 224)
-    model = torchvision.models.alexnet()
+    # model = torchvision.models.alexnet()
+    # model = torchvision.models.vgg16()
+    # model = torchvision.models.GoogLeNet()
+    # model = torchvision.models.Inception3()
+    # model = torchvision.models.densenet121(pretrained=True)
+    model = torchvision.models.densenet121()
+    # model = torch.hub.load('pytorch/vision:v0.10.0', 'densenet121', pretrained=True)
+
 
     # device = torch.device("cuda:2" if torch.cuda.is_available() else 'cpu')
     pth_to_onnx(model, input, checkpoint, onnx_path)
