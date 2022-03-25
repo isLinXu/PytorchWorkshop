@@ -2,10 +2,7 @@ import torch
 import torch.onnx
 import torchvision.models as models
 from torchsummary import summary
-import timm
 from torch import onnx
-
-import Vision_Models.models as vmodels
 
 import os
 
@@ -56,8 +53,8 @@ def load_onnx_model(path):
 if __name__ == '__main__':
     print(torch.__version__)
     os.environ['CUDA_VISIBLE_DEVICES'] = '0'
-    checkpoint = '/home/hxzh02/文档/ModelsLIst/Vision_Transformer/vit_b_16-c867db91.pth'
-    onnx_path = '/home/hxzh02/文档/ModelsLIst/Vision_Transformer/vit_b_16-c867db91.onnx'
+    checkpoint = '/home/hxzh02/文档/ModelsLIst/VggNet/vgg16-397923af.pth'
+    onnx_path = '/home/hxzh02/文档/ModelsLIst/VggNet/vgg16-397923af.onnx'
     #
     # checkpoint = '/home/hxzh02/文档/ModelsLIst/VggNet/vgg16-397923af.pth'
     # onnx_path = '/home/hxzh02/文档/ModelsLIst/VggNet/vgg16-397923af.onnx'
@@ -70,7 +67,7 @@ if __name__ == '__main__':
     # Model list
     input_size = torch.randn(1, 3, 224, 224)
     # model = models.alexnet()
-    # model = models.vgg16()
+    model = models.vgg16()
     # model = models.GoogLeNet()
     # model = models.Inception3()
     # model = models.densenet121()
@@ -83,7 +80,7 @@ if __name__ == '__main__':
     # model = models.efficientnet_b0()
     # model = models.mnasnet0_5()
     # model = models.convnext_tiny()
-    model = models.vit_b_16()
+    # model = models.vit_b_16()
 
     # Trans Model to ONNX
     pth_to_onnx(model, input_size, checkpoint, onnx_path)
